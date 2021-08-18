@@ -1,0 +1,72 @@
+#é necessário ter o selenium e também o pyautogui, basta digitar no teminal pip install selenium e pip install pyautogui para instalar
+from selenium import webdriver
+from selenium.webdriver.common import keys
+from selenium.webdriver.common.keys import Keys
+import pyautogui
+from time import sleep
+
+#inicialização
+driver = webdriver.Chrome(executable_path=r'./chromedriver.exe')
+driver.maximize_window()
+driver.get('http://cas.prodater.teresina.pi.gov.br')
+
+#fazer login
+driver.find_element_by_xpath('//*[@id="user"]').click()
+driver.find_element_by_xpath('//*[@id="user"]').send_keys('#usuaro' + Keys.RETURN)
+driver.find_element_by_xpath('//*[@id="pwd"]').send_keys('#senha' + Keys.RETURN)
+
+lista_pessoas = [
+]
+
+for pessoa in range(len(lista_pessoas)):
+    #fazer chamado
+    driver.get('#link')
+    driver.find_element_by_xpath('//*[@id="label_2_org_id"]').send_keys('#orgão')
+    sleep(2)
+    pyautogui.click(475, 406)
+    sleep(2)
+    pyautogui.click(474, 416)
+    sleep(2)
+    pyautogui.write('#usuario criador')
+    sleep(2)
+    pyautogui.click(471, 435)
+    sleep(2)
+    driver.find_element_by_xpath('//*[@id="2_origin"]').click()
+    sleep(2)
+    pyautogui.click(500, 517)
+    sleep(2)
+    driver.find_element_by_xpath('//*[@id="2_title"]').send_keys('#titulo chamado')
+    driver.find_element_by_xpath('//*[@id="2_description"]').send_keys(f'#decrição chamado')
+    driver.find_element_by_xpath('//*[@id="2_service_id"]').click()
+    sleep(2)
+    pyautogui.click(600, 534)
+    sleep(3)
+    pyautogui.click(593, 747)
+    sleep(3)
+    pyautogui.write('#filtro tipo de chamado')
+    driver.find_element_by_xpath('//*[@id="form_2"]/button[3]/span').click()
+
+    #atribuir chamado
+    sleep(4)
+    pyautogui.click(523, 247)
+    sleep(4)
+    pyautogui.click(493, 450)
+    sleep(4)
+    pyautogui.click(431, 284)
+    sleep(4)
+    pyautogui.write('#usuario a quem atribuir')
+    sleep(4)
+    pyautogui.press('enter')
+    driver.find_element_by_xpath('//*[@id="apply_stimulus"]/button[2]').click()
+
+    #resolver chamado
+    driver.find_element_by_xpath('//*[@id="-1"]/div[3]/a').click()
+    driver.find_element_by_xpath('//*[@id="form_2"]/button[4]/span').click()
+    driver.find_element_by_xpath('//*[@id="att_2"]').send_keys('##resolução')
+    driver.find_element_by_xpath('//*[@id="apply_stimulus"]/button[2]').click()
+
+
+    #finalizar chamado
+    driver.find_element_by_xpath('//*[@id="-1"]/div[3]/a').click()
+    driver.find_element_by_xpath('//*[@id="form_2"]/button[3]/span').click()
+    driver.find_element_by_xpath('//*[@id="apply_stimulus"]/button[2]/span').click()
