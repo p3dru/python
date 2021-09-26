@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
-
-def encontrar_entre_aspas(string):
+"""
+esse código serve para formatar arquivos que contém letras maiúsculas, minúsculas, acentuadas, ou com caracteres
+especiais como espaço ou hifens, qualquer necessidade adicional pode ser adicionada facilmente com a criação
+de algumas def´s específicas
+"""
+def encontrar_entre_aspas(string): #recebe uma string a ser analizada
     novo_texto = ''
     contador = 0
     for x in range(len(string)):
