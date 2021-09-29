@@ -74,7 +74,7 @@ def tirar_acentos_dos_is(letra):
 
 def tirar_acentos_dos_os(letra):
     nova_letra = ''
-    if letra in 'óÓÒòöÖõÕ':
+    if letra in 'óÓÒòöÖõÕÔô':
         nova_letra = 'o'
     else:
         nova_letra = letra
