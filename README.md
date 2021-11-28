@@ -1,3 +1,0 @@
-# python
-Códigos em python
-
