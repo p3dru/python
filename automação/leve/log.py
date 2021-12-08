@@ -10,22 +10,25 @@ arquivo.close()
 '''
 
 import os
+from datetime import datetime
 
-
-def verificar_existencia():
-    caminho = 'google_drive'
+def verificar_existencia(mensagem):
+    caminho = ''
     arquivo = caminho + '/log.txt'
+    data_e_hora = datetime.now()
+    data_e_hora_texto = data_e_hora.strftime('%d/%m/%Y %H:%M')
 
     if not os.path.exists(caminho):
         os.makedirs(caminho)
     
     if not os.path.exists(arquivo):
-        open(arquivo, 'w')
-    else:
         with open(arquivo, 'a') as arquivo:
-            arquivo.write('\nlog feito')
+            arquivo.write(f'Arquivo de log criado em {data_e_hora_texto}')
+            arquivo.write(mensagem + f' ({data_e_hora_texto})')
+    else:
+        with open(arquivo, 'a') as arquivo:    
+            arquivo.write(mensagem + f' ({data_e_hora_texto})')
 
 
     return arquivo
 
-verificar_existencia()
