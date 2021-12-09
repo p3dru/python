@@ -70,6 +70,8 @@ for nome_arquivo, mime_type in zip(lista_arquivos, lista_extensoes):#, tipos_dos
 #FALTA RESOLVER O PROBLEMA DE CRIAR VÁRIAS PASTAS NO DRIVE
 #try catch para cada erro de upload, insistir no upload com while
 #retirar cada arquivo dado upload na lista (testar)
+#inserir um contador de quantos arquivos x devem existir no drive
+#se não definir a pasta deixa no raiz
 
 
 
