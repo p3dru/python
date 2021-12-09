@@ -13,8 +13,8 @@ import os
 from datetime import datetime
 
 def verificar_existencia(mensagem):
-    caminho = ''
-    arquivo = caminho + '/log.txt'
+    caminho = './'
+    arquivo = caminho + 'log.txt'
     data_e_hora = datetime.now()
     data_e_hora_texto = data_e_hora.strftime('%d/%m/%Y %H:%M')
 
