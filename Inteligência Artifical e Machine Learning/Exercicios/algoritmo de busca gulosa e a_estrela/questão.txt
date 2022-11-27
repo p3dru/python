@@ -1,0 +1,6 @@
+O objetivo desta tarefa é utilizar o mesmo código fonte das aulas anteriores para construir o exemplo abaixo.
+A cidade de origem é Porto União e a cidade de destino é Curitiba. Na figura 1
+você pode visualizar as distâncias pela estrada entre cada uma das cidades
+Na figura 2, você pode observar a tabela com as heurísticas com a distância 
+em linha reta entre todas as cidades e o objetivo (Curitiba)
+
