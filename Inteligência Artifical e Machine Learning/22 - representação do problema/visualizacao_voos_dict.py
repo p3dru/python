@@ -207,9 +207,25 @@ No estudo de caso de voos, vai alterando pouco a pouco os voos selecionados até
 uma lista com os valores de custo total mais baratos
 O algoritmo repete várias vezes esse processo até encontrar o melhor valor
 """
+"""
 melhor_solucao, melhor_custo = mlrose.hill_climb(problema, random_state = 0)
 melhor_solucao, melhor_custo
 
-imprimir_voos(melhor_solucao)
+#imprimir_voos(melhor_solucao)                                                             #imprime voos mais baratos
+#voos[('BRU', 'FCO')]                                                                     #verifica o menor valor
+"""
 
-#voos[('BRU', 'FCO')]
+# 27 - SIMULATED ANNEALING
+"""
+Começa com uma solução aleatória usando uma variável que representa a temperatura (começa alta e vai baixando ao decorrer do algoritmo)
+Nesse algoritmo, um número é alterado a cada repetição: Se a solução é pior que a anterior, ainda existe a probabilidade de selecioná-lo,
+diferente do hill climb. Considerar os piores ainda pode ter uma vantagem, já que muitas vezes, o hill climb não encontra o mínimo global,
+apenas o mínimo local.
+
+Documentação mlrose: https://mlrose.readthedocs.io/en/stable/
+"""
+
+melhor_solucao, melhor_custo = mlrose.simulated_annealing(problema, schedule = mlrose.decay.GeomDecay(init_temp=10000), random_state = 8)
+melhor_solucao, melhor_custo
+
+imprimir_voos(melhor_solucao)
