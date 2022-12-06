@@ -252,3 +252,6 @@ voltamos ao critério de parada e refazemos o processo e ao final, Listam-se os 
 melhor_solucao, melhor_custo = mlrose.genetic_alg(problema, pop_size=100, mutation_prob=0.2)
 melhor_solucao, melhor_custo
 imprimir_voos(melhor_solucao)
+
+#Sendo o pop_size o tamanho da população
+#Sendo a mutation_prob a probabilidade de mutação
