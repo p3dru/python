@@ -1,4 +1,8 @@
 #esse arquivo é para criar um dicionario com duas chaves e uma lista de atributos, dados ex:{('BRU', 'FCO'): ['15:44', '18:55', 382]}
+import six
+import sys
+sys.modules['sklearn.externals.six'] = six
+import mlrose
 
 pessoas = [("Lisboa", "LIS"),
             ("Madrid", "MAD"),
@@ -16,9 +20,7 @@ for linha in open("arquivo que seja separado por virgulas e que contenha os dado
     origem, destino, saida, chegada, preco = linha.split(',')
     voos.setdefault((origem, destino), [])
     voos[(origem, destino)].append((saida, chegada, int(preco)))
-
     print(voos)
-
     #print(voos[('LIS', 'FCO')])
 """
 #o exemplo pego (após ter passado por esse for) foi:
@@ -167,6 +169,47 @@ def imprimir_voos(agenda):
     #print o preço total da viagem
     print(f"Preço total: {total_preco}")
 
-imprimir_voos(agenda)
+#imprimir_voos(agenda)
 
 #O objetivo dos outros algoritmos é determinar os menores custos das viagens de ida e volta "automaticamente"
+def fitness_function(agenda):
+  id_voo = -1
+  total_preco = 0
+  for i in range(len(agenda) // 2):
+    origem = pessoas[i][1]
+    id_voo += 1
+    ida = voos[(origem, destino)][agenda[id_voo]]
+    total_preco += ida[2]
+    id_voo += 1
+    volta = voos[(destino, origem)][agenda[id_voo]]
+    total_preco += volta[2]
+  return total_preco
+
+
+fitness = mlrose.CustomFitness(fitness_function)
+
+"""
+mlrose.DiscreteOpt = trata com números inteiros
+lenght = tamanho do array que deve ser gerado
+fitness_fn = formula fitness para encontrar a solução
+maximize = False -> para encontrar os menores valores de solução
+max_val = 10 valor máximo de 10 voos
+"""
+problema = mlrose.DiscreteOpt(length = 12, fitness_fn = fitness, maximize = False, max_val = 10)
+print(problema)
+
+#25 - HILL CLIMB
+ 
+"""
+Começa com uma solução randômica e procura e procura pelos melhores vizinhos,
+pega uma lista aleatória e faz pequeas alterações para se alcançar o resultado esperado
+No estudo de caso de voos, vai alterando pouco a pouco os voos selecionados até encontrar
+uma lista com os valores de custo total mais baratos
+O algoritmo repete várias vezes esse processo até encontrar o melhor valor
+"""
+melhor_solucao, melhor_custo = mlrose.hill_climb(problema, random_state = 0)
+melhor_solucao, melhor_custo
+
+imprimir_voos(melhor_solucao)
+
+#voos[('BRU', 'FCO')]
