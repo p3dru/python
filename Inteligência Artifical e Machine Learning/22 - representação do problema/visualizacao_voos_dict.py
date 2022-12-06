@@ -225,7 +225,30 @@ apenas o mínimo local.
 Documentação mlrose: https://mlrose.readthedocs.io/en/stable/
 """
 
+"""
 melhor_solucao, melhor_custo = mlrose.simulated_annealing(problema, schedule = mlrose.decay.GeomDecay(init_temp=10000), random_state = 8)
 melhor_solucao, melhor_custo
 
+imprimir_voos(melhor_solucao)
+"""
+
+# 29 - ALGORITMO GENÉTICO
+"""
+Cria-se a população inicial (que antigamente era chamada de conjunto de soluções) gera soluções randõmicas (configuráveis pelo user)
+no caso, cada lista é chamada agora de indivíduo e não mais de solução. Os valores da lista de cada indivíduo, são chamados de cromossomos.
+E cada valor da lista é chamado de gene.
+Após a criação da população inicial, avaliamos a população, avaliamos cada individuo por um resultado gerado, (nesse caso, pegamos o menor).
+Após isso, adicionamos um critério de parada, definimos quantas vezes o algoritmo genético vai rodar. Cada geração é uma melhoria na população
+anterior. No caso, melhorias na população.
+Se o critério de parada ainda não for atendido, podemos selecionar os pais (melhores individuos da população), após selecioná-los, descartamos
+os outros.
+Após a seleção, fazemos o crossover/reprodução via operadores genéticos, "quebrando" as cadeias/listas e unindo as cadeias entre si e gerando
+novos indivíduos/soluções (lembrando que cada indivíduo é uma solução)
+Outra técnicaé a mutação (que parece o hill climb) que vai mutando de 1 por 1 os genes para verificar os melhores resultados e, após isso,
+avaliamos a população novamente e jogamos fora a população antiga (soluções que não são tão boas), definimos a população sobrevivente,
+voltamos ao critério de parada e refazemos o processo e ao final, Listam-se os melhores indivíduos.
+"""
+
+melhor_solucao, melhor_custo = mlrose.genetic_alg(problema, pop_size=100, mutation_prob=0.2)
+melhor_solucao, melhor_custo
 imprimir_voos(melhor_solucao)
